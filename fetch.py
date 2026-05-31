@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
 """
 Fetches all entries from the siberguvenlik.gov.tr API and writes one txt file
-per type.  Each file starts with comment lines showing the latest entry ID
-(so any update to the list is immediately visible in a diff).
+per type — plain newline-separated lists, ready to be served as HTTP resources
+(e.g. as a GitHub Pages feed for FortiGate / other NGFW threat-feed imports).
 """
 
-import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
 
 import requests
 
 BASE_URL = "https://siberguvenlik.gov.tr/api/address/index"
-TYPES = ["ip", "domain", "url"]
+
+# API type -> output filename
+TYPES = {
+    "ip":     "ip-list.txt",
+    "ip6":    "ip6-list.txt",
+    "domain": "url-list.txt",
+}
+
 WORKERS = 20
 RETRY_LIMIT = 5
-RETRY_BACKOFF = 2  # seconds
 
 
 def fetch_page(session: requests.Session, type_: str, page: int) -> dict:
@@ -28,22 +32,22 @@ def fetch_page(session: requests.Session, type_: str, page: int) -> dict:
         except Exception as exc:
             if attempt == RETRY_LIMIT - 1:
                 raise
-            wait = RETRY_BACKOFF * (2 ** attempt)
-            print(f"  [warn] page {page} attempt {attempt+1} failed ({exc}), retrying in {wait}s")
+            wait = 2 ** attempt
+            print(f"  [warn] {type_} page {page} attempt {attempt+1} failed ({exc}), retry in {wait}s")
             time.sleep(wait)
 
 
-def fetch_type(type_: str) -> tuple[int, int, list[str]]:
-    """Return (latest_id, total_count, [url, ...]) for the given type."""
+def fetch_type(type_: str) -> list[str]:
     with requests.Session() as session:
         first = fetch_page(session, type_, 1)
-        total = first["totalCount"]
         page_count = first["pageCount"]
-        latest_id = first["models"][0]["id"] if first["models"] else 0
+        total = first["totalCount"]
         entries: list[str] = [m["url"] for m in first["models"]]
 
+        print(f"  [{type_}] total={total}, pages={page_count}")
+
         if page_count <= 1:
-            return latest_id, total, entries
+            return entries
 
         def load(page):
             data = fetch_page(session, type_, page)
@@ -53,40 +57,32 @@ def fetch_type(type_: str) -> tuple[int, int, list[str]]:
             futures = {pool.submit(load, p): p for p in range(2, page_count + 1)}
             pages: dict[int, list[str]] = {}
             done = 0
-            total_pages = page_count
             for fut in as_completed(futures):
                 p, urls = fut.result()
                 pages[p] = urls
                 done += 1
-                if done % 200 == 0 or done == total_pages - 1:
-                    print(f"  [{type_}] {done}/{total_pages - 1} pages fetched")
+                if done % 500 == 0:
+                    print(f"  [{type_}] {done}/{page_count - 1} pages done")
 
         for p in range(2, page_count + 1):
             entries.extend(pages[p])
 
-    return latest_id, total, entries
-
-
-def write_list(type_: str, latest_id: int, total: int, entries: list[str]) -> str:
-    filename = f"{type_}-list.txt"
-    generated = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(f"# latest_id: {latest_id}\n")
-        f.write(f"# total: {total}\n")
-        f.write(f"# generated: {generated}\n")
-        for entry in entries:
-            f.write(entry + "\n")
-    return filename
+    return entries
 
 
 def main():
-    for type_ in TYPES:
-        print(f"Fetching {type_}...")
+    for type_, filename in TYPES.items():
+        print(f"Fetching type={type_} -> {filename}")
         t0 = time.time()
-        latest_id, total, entries = fetch_type(type_)
+        entries = fetch_type(type_)
         elapsed = time.time() - t0
-        filename = write_list(type_, latest_id, total, entries)
-        print(f"  -> {filename}: {len(entries)} entries, latest_id={latest_id} ({elapsed:.1f}s)")
+
+        with open(filename, "w", encoding="utf-8") as f:
+            for entry in entries:
+                f.write(entry + "\n")
+
+        print(f"  -> {filename}: {len(entries)} entries ({elapsed:.1f}s)")
+
     print("Done.")
 
 

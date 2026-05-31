@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ip-list.txt domain-list.txt url-list.txt
+          git add ip-list.txt ip6-list.txt url-list.txt
           if git diff --cached --quiet; then
             echo "No changes – lists are up to date."
           else
