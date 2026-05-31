@@ -29,7 +29,8 @@ TYPES = {
 }
 
 STATE_FILE = "state.json"
-WORKERS = 20
+WORKERS_INCREMENTAL = 20
+WORKERS_FULL = 100
 RETRY_LIMIT = 5
 
 
@@ -90,7 +91,7 @@ def fetch_full(type_: str) -> tuple[int, list[str]]:
             data = fetch_page(session, type_, page)
             return page, [m["url"] for m in data["models"]]
 
-        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        with ThreadPoolExecutor(max_workers=WORKERS_FULL) as pool:
             futures = {pool.submit(load, p): p for p in range(2, page_count + 1)}
             pages: dict[int, list[str]] = {}
             done = 0
