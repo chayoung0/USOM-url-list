@@ -2,8 +2,15 @@ name: Update threat lists
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # every 6 hours
-  workflow_dispatch:       # allow manual runs
+    - cron: "0 */6 * * *"  # incremental every 6 hours
+    - cron: "0 2 * * 0"    # full regeneration every Sunday at 02:00 UTC
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Run mode"
+        default: "incremental"
+        type: choice
+        options: [incremental, full]
 
 permissions:
   contents: write
@@ -22,16 +29,25 @@ jobs:
         run: pip install requests
 
       - name: Fetch lists
-        run: python fetch.py
+        run: |
+          SCHEDULE="${{ github.event.schedule }}"
+          INPUT="${{ github.event.inputs.mode }}"
+          if [ "$SCHEDULE" = "0 2 * * 0" ] || [ "$INPUT" = "full" ]; then
+            echo "Running full regeneration"
+            python fetch.py --full
+          else
+            echo "Running incremental update"
+            python fetch.py
+          fi
 
       - name: Commit and push if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ip-list.txt ip6-list.txt url-list.txt
+          git add ip-list.txt ip6-list.txt url-list.txt state.json
           if git diff --cached --quiet; then
             echo "No changes – lists are up to date."
           else
-            git commit -m "chore: update threat lists $(date -u +%Y-%m-%d)"
+            git commit -m "chore: update threat lists $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi
