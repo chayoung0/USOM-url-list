@@ -1,3 +1,5 @@
+telefonfiyatkarsilasmasi.sbs
+basvurbizlkelerle.sbs
 trackingservice.monday.com
 sharing-weblooks-394039902939console-39940030broker.mos.ap-southeast-2.sufybkt.com
 dijitalweb-kampanyalarimiz.com
