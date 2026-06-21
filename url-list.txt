@@ -1,3 +1,4 @@
+20bintanekonutaciksatisda.vercel.app
 toekibassvur.vercel.app
 sosyalkonutbasvurular.cfd
 gokarcas.store
