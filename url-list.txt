@@ -1,3 +1,11 @@
+saglik-gov.sbs
+csgb-gov-tr.app
+kgm-gov-tt.me
+csgb-gov-tr.com
+www-osym-gov-tr.nproxy.org
+kgmgov.sbs
+toplu-konut-projesi-toki-gov-tr.ph
+kira-yardim-edevlet-tr-gov.ph
 20bintanekonutaciksatisda.vercel.app
 toekibassvur.vercel.app
 sosyalkonutbasvurular.cfd
