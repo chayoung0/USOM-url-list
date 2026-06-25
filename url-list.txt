@@ -1,3 +1,5 @@
+toki-gov-trk.vercel.app
+haziranindiirimler.duckdns.org
 finansgundemi.media
 borsagundemi.media
 toki-gov-tr-19.vercel.app
