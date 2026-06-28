@@ -1,3 +1,10 @@
+kmkmsorgulamazfer.web.app
+kmkmsorgulamazfer.firebaseapp.com
+ptt-avm-sorgulama.firebaseapp.com
+ptt-km-sorgula-ma.firebaseapp.com
+ptt-km-sorgula-ma.web.app
+ptt-avm-sorgulama.web.app
+paribuarabacekilisi.co
 islemlerhizmet.online
 a1o1.ile-e-islemlerim.com.tr
 umrekuveyt.online
