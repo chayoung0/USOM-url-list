@@ -1,3 +1,4 @@
+paribuarabasansi.com
 halk-kredi.vercel.app
 kmkmsorgulamazfer.web.app
 kmkmsorgulamazfer.firebaseapp.com
