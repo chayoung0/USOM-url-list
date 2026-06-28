@@ -1,3 +1,7 @@
+km-sorgu-avmptt.firebaseapp.com
+ptt-avm-kmsorgu.web.app
+ptt-avm-kmsorgu.firebaseapp.com
+km-sorgu-avmptt.web.app
 paribuarabasansi.com
 halk-kredi.vercel.app
 kmkmsorgulamazfer.web.app
