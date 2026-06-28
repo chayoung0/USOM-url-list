@@ -1,3 +1,4 @@
+halk-kredi.vercel.app
 kmkmsorgulamazfer.web.app
 kmkmsorgulamazfer.firebaseapp.com
 ptt-avm-sorgulama.firebaseapp.com
