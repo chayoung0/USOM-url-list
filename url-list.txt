@@ -1,3 +1,6 @@
+pttavm-arac-sorgulama.web.app
+trsiparisbilgi.online
+odeme-ilanim-48776.com
 km-sorgu-avmptt.firebaseapp.com
 ptt-avm-kmsorgu.web.app
 ptt-avm-kmsorgu.firebaseapp.com
