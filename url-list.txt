@@ -1,3 +1,4 @@
+ak-kampanya.vercel.app
 a101katologz.duckdns.org
 hulubikasa-deresefu.xyz
 projects-poker-championships-selecting.trycloudflare.com
