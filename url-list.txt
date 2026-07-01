@@ -1,3 +1,4 @@
+qeruvia.xyz
 321321321.vercel.app
 pttavm-guvenli-bilgilendirici.web.app
 pttavm-arac-bilgileriniz.firebaseapp.com
