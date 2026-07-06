@@ -1,3 +1,11 @@
+pttavm-hizli-km-ogrenme.web.app
+pttavm-hizli-km-ogrenme.firebaseapp.com
+pttavm-aracgecmisiogren.firebaseapp.com
+ptt-kmsorgula-aracgecmisiogren.firebaseapp.com
+ptt-kmsorgula-aracgecmisiogren.web.app
+pttavmkmdestek.web.app
+bokia.cyou
+trsiparisonay.online
 natosummitankara.com
 natoankarasummit.com
 natosummitankara.org
