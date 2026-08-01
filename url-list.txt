@@ -1,3 +1,5 @@
+bilgilendirme-tr.online
+dijitalislemfirsati.sbs
 ozelarackiralama.com
 hizmetvakfi-net.vercel.app
 dijital-islembilgi.sbs
