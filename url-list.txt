@@ -1,3 +1,4 @@
+isko-web.ink
 frenchbuldogg.duckdns.org
 karaca-a5q5-git-main-redmi1.vercel.app
 speak-g.garden
