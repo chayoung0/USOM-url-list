@@ -1,3 +1,6 @@
+turkcurrent.blog
+islemleriniz.duckdns.org
+acentecozumleri.cfd
 185.247.137.42
 221.165.172.38
 103.251.143.14
