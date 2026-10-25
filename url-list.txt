@@ -1,3 +1,12 @@
+lab.diyanetisleribakanligi.vercel.app
+alpha.diyanetisleribakanligi.vercel.app
+preprod.diyanetisleribakanligi.vercel.app
+development.diyanetisleribakanligi.vercel.app
+beta.diyanetisleribakanligi.vercel.app
+test.diyanetisleribakanligi.vercel.app
+preview.diyanetisleribakanligi.vercel.app
+sandbox.diyanetisleribakanligi.vercel.app
+intranet.diyanetisleribakanligi.vercel.app
 svsvsvsv123sv.duckdns.org
 garanti-nakit-hizmeti.click
 hegwgsaagl.giize.com
