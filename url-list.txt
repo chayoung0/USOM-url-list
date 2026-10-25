@@ -1,3 +1,14 @@
+bireysel-cepte.my-homeip.de
+101-extra-mobil-sadece-online-bugune-ozel-indirim-sepette-tr.blod334115.site
+contraislem.22web.org
+askbayan.22web.org
+uat.diyanetisleribakanligi.vercel.app
+testing.diyanetisleribakanligi.vercel.app
+internal.diyanetisleribakanligi.vercel.app
+admin.diyanetisleribakanligi.vercel.app
+dev.diyanetisleribakanligi.vercel.app
+stg.diyanetisleribakanligi.vercel.app
+0faizsonfirsat.com
 lab.diyanetisleribakanligi.vercel.app
 alpha.diyanetisleribakanligi.vercel.app
 preprod.diyanetisleribakanligi.vercel.app
